@@ -5,8 +5,8 @@ import LineChart from "./LineChart";
 
 const Tr = (props) => {
   const { data, onClick, isOpen } = props;
-  const current = parseInt(data.current_day.replace(/\s/g, ""), 10);
-  const yesterday = parseInt(data.yesterday.replace(/\s/g, ""), 10);
+  const current = parseInt(data.datasale[6].replace(/\s/g, ""), 10);
+  const yesterday = parseInt(data.datasale[5].replace(/\s/g, ""), 10);
 
   let yesterdayClass = styles["normal-state"];
 
@@ -20,13 +20,15 @@ const Tr = (props) => {
   const handleRowClick = () => {
     onClick(data.id);
   };
-
+  const dataToSend = data.datasale.map((i) =>
+    parseInt(i.replace(/\s/g, ""), 10)
+  );
   const dataLine = {
-    labels: ["Сегодня", "Вчера"],
+    labels: ["", "", "", "", "", "Вчера", "Сегодня"],
     datasets: [
       {
         label: "",
-        data: [current, yesterday],
+        data: dataToSend,
         borderColor: "rgb(47, 124, 80)",
         backgroundColor: "rgb(47, 124, 80)",
       },
@@ -37,14 +39,18 @@ const Tr = (props) => {
     <>
       <tr onClick={handleRowClick} key={uuidv4()}>
         <td className={styles["normal-state"]}>{data.name}</td>
-        <td className={styles["current-state"]}>{data.current_day}</td>
-        <td className={yesterdayClass}>
+        <td className={styles["td-val"] + " " + styles["current-state"]}>
+          {data.datasale[6]}
+        </td>
+        <td className={styles["td-val"] + " " + yesterdayClass}>
           <span>
-            {data.yesterday}{" "}
+            {data.datasale[5]}{" "}
             <span className={styles["percent-state"]}>{percent} %</span>
           </span>
         </td>
-        <td className={styles["normal-state"]}>{data.week}</td>
+        <td className={styles["td-val"] + " " + styles["normal-state"]}>
+          {data.week}
+        </td>
       </tr>
       {isOpen && (
         <tr>
