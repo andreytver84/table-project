@@ -1,0 +1,49 @@
+table {
+  border-spacing: 10px;
+  border-collapse: separate;
+  min-width: 800px;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  opacity: 0.9;
+}
+
+th {
+  padding: 15px 10px;
+}
+
+td {
+  padding: 10px;
+  color: rgb(136, 141, 144);
+}
+
+.normal-state {
+  background: rgb(245, 245, 245);
+}
+
+.current-state {
+  background: rgb(238, 249, 255);
+}
+
+.increase-state {
+  background: rgb(236, 247, 233);
+}
+
+.percent-state {
+  color: rgb(47, 124, 80);
+  font-weight: 500;
+  min-width: 50px;
+  display: inline-block;
+}
+
+.decrease-state {
+  background: rgb(255, 228, 230);
+}
+
+.decrease-state .percent-state {
+  color: rgb(207, 33, 34);
+}
